@@ -1,0 +1,782 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Protea Evolution - Concept Workbook</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+            color: #f5f5f5;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            background: radial-gradient(ellipse at center, #E8839C 0%, #C74E6D 50%, #1a1a1a 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            border: 2px solid rgba(255, 215, 219, 0.3);
+            border-radius: 50%;
+            animation: pulse 3s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 0.5; }
+            50% { transform: scale(1.2); opacity: 0.8; }
+        }
+
+        .hero h1 {
+            font-size: 5rem;
+            font-weight: bold;
+            letter-spacing: 3px;
+            margin-bottom: 20px;
+            text-shadow: 0 0 30px rgba(232, 131, 156, 0.8);
+            z-index: 1;
+            animation: fadeInDown 1s ease-out;
+        }
+
+        .hero .subtitle {
+            font-size: 1.8rem;
+            color: #FFD7DB;
+            font-style: italic;
+            z-index: 1;
+            animation: fadeInUp 1s ease-out 0.3s both;
+        }
+
+        .hero .tagline {
+            font-size: 1.2rem;
+            color: #E8B4BC;
+            margin-top: 20px;
+            z-index: 1;
+            animation: fadeInUp 1s ease-out 0.6s both;
+        }
+
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-50px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(50px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Section Styling */
+        .section {
+            padding: 100px 20px;
+            position: relative;
+        }
+
+        .section:nth-child(even) {
+            background: linear-gradient(135deg, #2d2d2d 0%, #1a1a1a 100%);
+        }
+
+        .section-title {
+            font-size: 3.5rem;
+            text-align: center;
+            margin-bottom: 60px;
+            color: #E8839C;
+            text-transform: uppercase;
+            letter-spacing: 5px;
+            position: relative;
+            padding-bottom: 20px;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 150px;
+            height: 4px;
+            background: linear-gradient(90deg, #E8839C, #FFD7DB);
+        }
+
+        /* Card Grid */
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
+            margin-top: 50px;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 2px solid rgba(232, 131, 156, 0.3);
+            border-radius: 20px;
+            padding: 40px;
+            backdrop-filter: blur(10px);
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(232, 131, 156, 0.1) 0%, transparent 70%);
+            transform: rotate(45deg);
+            transition: all 0.6s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            border-color: #E8839C;
+            box-shadow: 0 20px 60px rgba(232, 131, 156, 0.4);
+        }
+
+        .card:hover::before {
+            top: -25%;
+            left: -25%;
+        }
+
+        .card h3 {
+            font-size: 2rem;
+            color: #FFD7DB;
+            margin-bottom: 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .card p, .card ul {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #E8B4BC;
+            position: relative;
+            z-index: 1;
+        }
+
+        .card ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .card ul li {
+            padding: 10px 0;
+            padding-left: 30px;
+            position: relative;
+        }
+
+        .card ul li::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: #E8839C;
+            font-weight: bold;
+        }
+
+        /* Color Palette */
+        .color-palette {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+            margin: 50px 0;
+        }
+
+        .color-swatch {
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .color-swatch:hover {
+            transform: scale(1.1);
+        }
+
+        .color-box {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            margin-bottom: 15px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+            border: 3px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .color-label {
+            font-size: 1rem;
+            color: #FFD7DB;
+            font-weight: bold;
+        }
+
+        .color-code {
+            font-size: 0.9rem;
+            color: #8B9A7E;
+            margin-top: 5px;
+        }
+
+        /* Timeline */
+        .timeline {
+            position: relative;
+            padding: 50px 0;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background: linear-gradient(180deg, #E8839C, #FFD7DB);
+        }
+
+        .timeline-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 50px 0;
+            position: relative;
+        }
+
+        .timeline-item:nth-child(odd) .timeline-content {
+            margin-right: 55%;
+            text-align: right;
+        }
+
+        .timeline-item:nth-child(even) .timeline-content {
+            margin-left: 55%;
+            text-align: left;
+        }
+
+        .timeline-content {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 30px;
+            border-radius: 15px;
+            border: 2px solid rgba(232, 131, 156, 0.3);
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+
+        .timeline-content:hover {
+            border-color: #E8839C;
+            box-shadow: 0 10px 30px rgba(232, 131, 156, 0.3);
+        }
+
+        .timeline-marker {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 30px;
+            height: 30px;
+            background: #E8839C;
+            border: 4px solid #1a1a1a;
+            border-radius: 50%;
+            z-index: 2;
+        }
+
+        .timeline-number {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #E8839C;
+            margin-bottom: 10px;
+        }
+
+        .timeline-content h3 {
+            color: #FFD7DB;
+            margin-bottom: 15px;
+        }
+
+        .timeline-content p {
+            color: #E8B4BC;
+        }
+
+        /* Reflection Section */
+        .reflection-box {
+            background: linear-gradient(135deg, rgba(232, 131, 156, 0.2) 0%, rgba(199, 78, 109, 0.2) 100%);
+            border: 3px solid #E8839C;
+            border-radius: 25px;
+            padding: 60px;
+            margin: 50px auto;
+            max-width: 1200px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .reflection-box::before {
+            content: '"';
+            position: absolute;
+            top: 20px;
+            left: 30px;
+            font-size: 150px;
+            color: rgba(232, 131, 156, 0.2);
+            font-family: serif;
+        }
+
+        .reflection-box p {
+            font-size: 1.3rem;
+            line-height: 2;
+            color: #FFD7DB;
+            position: relative;
+            z-index: 1;
+            text-align: justify;
+        }
+
+        /* Final Product Showcase */
+        .showcase {
+            background: radial-gradient(ellipse at center, #C74E6D 0%, #1a1a1a 100%);
+            padding: 100px 20px;
+            text-align: center;
+        }
+
+        .showcase-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin-top: 60px;
+        }
+
+        .showcase-item {
+            background: rgba(255, 255, 255, 0.03);
+            border: 2px solid rgba(232, 131, 156, 0.4);
+            border-radius: 20px;
+            padding: 40px;
+            transition: all 0.4s ease;
+        }
+
+        .showcase-item:hover {
+            transform: scale(1.05);
+            border-color: #E8839C;
+            box-shadow: 0 20px 60px rgba(232, 131, 156, 0.5);
+        }
+
+        .showcase-item h4 {
+            font-size: 1.8rem;
+            color: #E8839C;
+            margin-bottom: 20px;
+        }
+
+        .showcase-item p {
+            color: #E8B4BC;
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+
+        /* Design Principles Section */
+        .principles-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .principle-card {
+            background: rgba(232, 131, 156, 0.1);
+            border-left: 4px solid #E8839C;
+            padding: 30px;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .principle-card:hover {
+            background: rgba(232, 131, 156, 0.15);
+            transform: translateX(10px);
+        }
+
+        .principle-card h4 {
+            color: #E8839C;
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+        }
+
+        .principle-card p {
+            color: #E8B4BC;
+            line-height: 1.8;
+        }
+
+        /* Footer */
+        .footer {
+            background: #1a1a1a;
+            padding: 40px;
+            text-align: center;
+            color: #8B9A7E;
+            font-size: 1rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 3rem;
+            }
+            
+            .section-title {
+                font-size: 2.5rem;
+            }
+            
+            .timeline::before {
+                left: 20px;
+            }
+            
+            .timeline-item:nth-child(odd) .timeline-content,
+            .timeline-item:nth-child(even) .timeline-content {
+                margin: 0 0 0 50px;
+                text-align: left;
+            }
+            
+            .timeline-marker {
+                left: 20px;
+            }
+
+            .color-palette {
+                gap: 20px;
+            }
+
+            .color-box {
+                width: 120px;
+                height: 120px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero Section -->
+    <div class="hero">
+        <h1>PROTEA EVOLUTION</h1>
+        <p class="subtitle">From Garden Discovery to Design Identity</p>
+        <p class="tagline">King Protea (Protea cynaroides) · School Garden Discovery · Concept Workbook</p>
+    </div>
+
+    <!-- Section 1: Identification -->
+    <div class="section">
+        <div class="container">
+            <h2 class="section-title">01. Identification & Discovery</h2>
+            
+            <div class="card-grid">
+                <div class="card">
+                    <h3>The Discovery</h3>
+                    <p><strong>Location:</strong> School Garden</p>
+                    <p><strong>Common Name:</strong> King Protea</p>
+                    <p><strong>Alternative Names:</strong> Giant Protea, Honeypot, King Sugar Bush, Suikerbos</p>
+                    <p><strong>Scientific Name:</strong> Protea cynaroides</p>
+                    <p><strong>Family:</strong> Proteaceae</p>
+                    <p><strong>Origin:</strong> South Africa</p>
+                    <p><strong>Significance:</strong> South African National Flower</p>
+                </div>
+
+                <div class="card">
+                    <h3>Physical Characteristics</h3>
+                    <ul>
+                        <li><strong>Top Texture:</strong> Soft, velvety, delicate with silky feel</li>
+                        <li><strong>Bottom/Stem Texture:</strong> Hard, woody, structural foundation</li>
+                        <li><strong>Form:</strong> Bowl-shaped sculptural structure, 12-30cm diameter</li>
+                        <li><strong>Pattern:</strong> Radiating spiral from central disc</li>
+                        <li><strong>Structure:</strong> Layered bracts surrounding dense flower center</li>
+                        <li><strong>Height:</strong> Shrub growing 1-2 meters tall</li>
+                        <li><strong>Leaves:</strong> Thick, leathery, glossy dark green</li>
+                    </ul>
+                </div>
+
+                <div class="card">
+                    <h3>Symbolic & Cultural Meaning</h3>
+                    <ul>
+                        <li>Courage & inner strength</li>
+                        <li>Diversity & transformation</li>
+                        <li>Natural resilience & adaptation</li>
+                        <li>South African cultural heritage</li>
+                        <li>Fire-adapted survival (regrows after wildfires)</li>
+                        <li>"King of Flowers" - representing majesty</li>
+                        <li>Named after Greek god Proteus (shape-shifter)</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Color Palette -->
+            <h2 class="section-title" style="margin-top: 100px;">Authentic King Protea Color Palette</h2>
+            <p style="text-align: center; color: #E8B4BC; font-size: 1.2rem; margin-bottom: 30px;">
+                Natural colors range from soft pale pink with silvery sheen to deep crimson red
+            </p>
+            <div class="color-palette">
+                <div class="color-swatch">
+                    <div class="color-box" style="background: #E8839C;"></div>
+                    <div class="color-label">Soft Pink</div>
+                    <div class="color-code">#E8839C</div>
+                    <div class="color-code">Delicate bracts</div>
+                </div>
+                <div class="color-swatch">
+                    <div class="color-box" style="background: #FFD7DB;"></div>
+                    <div class="color-label">Pale Blush</div>
+                    <div class="color-code">#FFD7DB</div>
+                    <div class="color-code">Silvery sheen</div>
+                </div>
+                <div class="color-swatch">
+                    <div class="color-box" style="background: #C74E6D;"></div>
+                    <div class="color-label">Deep Rose</div>
+                    <div class="color-code">#C74E6D</div>
+                    <div class="color-code">Rich tones</div>
+                </div>
+                <div class="color-swatch">
+                    <div class="color-box" style="background: #A62C4A;"></div>
+                    <div class="color-label">Crimson Red</div>
+                    <div class="color-code">#A62C4A</div>
+                    <div class="color-code">Deep accent</div>
+                </div>
+                <div class="color-swatch">
+                    <div class="color-box" style="background: #FFF8E7;"></div>
+                    <div class="color-label">Creamy White</div>
+                    <div class="color-code">#FFF8E7</div>
+                    <div class="color-code">Center florets</div>
+                </div>
+                <div class="color-swatch">
+                    <div class="color-box" style="background: #5A7C5A;"></div>
+                    <div class="color-label">Deep Green</div>
+                    <div class="color-code">#5A7C5A</div>
+                    <div class="color-code">Foliage base</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Section 2: Studies -->
+    <div class="section">
+        <div class="container">
+            <h2 class="section-title">02. Observational Studies</h2>
+            
+            <div class="card-grid">
+                <div class="card">
+                    <h3>Drawing Angles Explored</h3>
+                    <ul>
+                        <li><strong>Front View:</strong> Symmetrical crown radiating outward in circular pattern</li>
+                        <li><strong>Side Profile:</strong> Sculptural cup-like structure showing depth</li>
+                        <li><strong>Top-Down View:</strong> Mathematical spiral pattern from center disc</li>
+                        <li><strong>Bottom-Up View:</strong> Architectural base construction and woody stem</li>
+                        <li><strong>Cross-Section:</strong> Interior layered petal arrangement and structure</li>
+                        <li><strong>Magnified Details:</strong> Texture of center disc with tiny florets</li>
+                    </ul>
+                </div>
+
+                <div class="card">
+                    <h3>Element Analysis</h3>
+                    <ul>
+                        <li><strong>Lines:</strong> Radiating patterns from center, organic curves, sharp pointed bracts</li>
+                        <li><strong>Textures:</strong> Silky soft petals, fuzzy center disc, rough woody stem</li>
+                        <li><strong>Shapes:</strong> Circular disc, elongated teardrop petals, triangular bracts</li>
+                        <li><strong>Colors:</strong> Gradient transitions from pale pink to deep crimson</li>
+                        <li><strong>Form:</strong> Three-dimensional bowl structure, protective layering</li>
+                        <li><strong>Space:</strong> Negative space between petals creating rhythm</li>
+                    </ul>
+                </div>
+
+                <div class="card">
+                    <h3>Key Observations</h3>
+                    <ul>
+                        <li>Contrast between soft delicate top and hard woody bottom</li>
+                        <li>Natural golden ratio spiral in petal arrangement</li>
+                        <li>Protective layering - outer bracts shield inner flowers</li>
+                        <li>Dynamic movement - petals appear to radiate energy</li>
+                        <li>Textural complexity - smooth, fuzzy, and rough coexist</li>
+                        <li>Nature's perfect balance of strength and beauty</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Section 3: Design Process Timeline -->
+    <div class="section">
+        <div class="container">
+            <h2 class="section-title">03. Development & Transformation Journey</h2>
+            
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-number">Stage 1</div>
+                        <h3>Realistic Studies</h3>
+                        <p>Detailed botanical drawings capturing every angle. Focus on accurate representation of textures, proportions, and natural color variations. Multiple sketches from school garden observation.</p>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-number">Stage 2</div>
+                        <h3>Exploration & Analysis</h3>
+                        <p>Discovered hidden geometries: spiral mathematics, radiating energy patterns, and architectural structure. Cut open the flower to explore inner elements. Documented textural contrasts and structural integrity.</p>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-number">Stage 3</div>
+                        <h3>Abstraction Process</h3>
+                        <p>Transformed realistic form into semi-abstract composition. Found the perfect perspective (45° angle, magnified view) that reveals sculptural form while maintaining recognizability. Emphasized radiating pattern and central disc as essential identifiers.</p>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-number">Stage 4</div>
+                        <h3>Contemporary Fusion</h3>
+                        <p>Merged organic protea form with modern tattoo and tribal aesthetics. Simplified petals into geometric rays while enhancing soft/hard contrasts. Incorporated mandala-like patterns in center disc and tribal line work in base structure.</p>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-number">Stage 5</div>
+                        <h3>Stylisation & Design System</h3>
+                        <p>Created "Protea Power" versatile design system: vector-ready for infinite scalability, multiple colorway options (full color, monochrome, outline), modular components that work independently or together. Culturally authentic while contemporary.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Section 4: Design Elements & Principles -->
+    <div class="section">
+        <div class="container">
+            <h2 class="section-title">04. Elements & Principles of Design</h2>
+            
+            <h3 style="color: #E8839C; font-size: 2.5rem; text-align: center; margin-bottom: 40px;">Elements Found in Nature</h3>
+            
+            <div class="principles-grid">
+                <div class="principle-card">
+                    <h4>Line</h4>
+                    <p>Radiating lines from center create dynamic energy. Curved organic lines in petals contrast with sharp angular lines in bracts. Spiral lines follow golden ratio mathematics.</p>
+                </div>
+
+                <div class="principle-card">
+                    <h4>Shape</h4>
+                    <p>Organic circular disc at center. Elongated teardrop petal shapes. Triangular geometric bracts. Negative shapes between petals create rhythm.</p>
+                </div>
+
+                <div class="principle-card">
+                    <h4>Form</h4>
+                    <p>Three-dimensional bowl structure. Sculptural quality with depth and volume. Layers create architectural complexity. Cup-like protective formation.</p>
+                </div>
+
+                <div class="principle-card">
+                    <h4>Texture</h4>
+                    <p>Visual and tactile contrasts: silky smooth petals, fuzzy center disc, rough woody stem. Creates rich sensory experience through variety.</p>
+                </div>
+
+                <div class="principle-card">
+                    <h4>Color</h4>
+                    <p>Harmonious warm palette from soft pale pink with silvery sheen to deep crimson. Natural gradients. Creamy white center contrasts with pink/red bracts.</p>
+                </div>
+
+                <div class="principle-card">
+                    <h4>Space</h4>
+                    <p>Strategic negative space between petals. Positive space of dense center. Space creates breathing room and emphasizes structure.</p>
+                </div>
+            </div>
+
+            <h3 style="color: #E8839C; font-size: 2.5rem; text-align: center; margin: 80px 0 40px;">Principles Applied</h3>
+            
+            <div class="principles-grid">
+                <div class="principle-card">
+                    <h4>Balance</h4>
+                    <p>Perfect radial symmetry - every petal radiates equally from center. Asymmetric variations possible while maintaining overall balance. Visual weight distributed evenly.</p>
+                </div>
+
+                <div class="principle-card">
+                    <h4>Emphasis</h4>
+                    <p>Central textured disc serves as powerful focal point. Eye drawn to center then radiates outward. Visual hierarchy clearly established.</p>
+                </div>
+
+                <div class="principle-card">
+                    <h4>Movement</h4>
+                    <p>Outward radiating energy from center creates dynamic flow. Spiral pattern suggests rotation. Petals guide eye in circular motion.</p>
+                </div>
+
+                <div class="principle-card">
+                    <h4>Pattern</h4>
+                    <p>Repetitive petal arrangement creates visual pattern. Consistent spacing and sizing. Pattern creates predictability and harmony.</p>
+                </div>
+
+                <div class="principle-card">
+                    <h4>Rhythm</h4>
+                    <p>Regular intervals of petal repetition create visual music. Alternating pattern of light and shadow. Rhythmic flow around center.</p>
+                </div>
+
+                <div class="principle-card">
+                    <h4>Unity</h4>
+                    <p>All elements work cohesively. Organic-geometric fusion feels complete. Every part contributes to whole. Harmonious composition.</p>
+                </div>
+
+                <div class="principle-card">
+                    <h4>Contrast</h4>
+                    <p>Soft vs hard textures. Light pale pink vs deep crimson. Delicate petals vs woody stem. Organic curves vs geometric angles. Creates visual interest.</p>
+                </div>
+
+                <div class="principle-card">
+                    <h4>Proportion</h4>
+                    <p>Golden ratio in spiral arrangement. Petals proportional to center disc. Natural mathematical relationships create pleasing aesthetics.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Section 5: Composition Studies -->
+    <div class="section">
+        <div class="container">
+            <h2 class="section-title">05. Composition & Layout Explorations</h2>
+            
+            <div class="card-grid">
+                <div class="card">
+                    <h3>Option A: Centered Medallion</h3>
+                    <p><strong>Approach:</strong> Protea as primary focal point in center</p>
+                    <ul>
+                        <li>Classic, balanced composition</li>
+                        <li>Company name curved around base</li>
+                        <li>Minimalist surrounding white space</li>
+                        <li>Professional and timeless feel</li>
+                        <li>Works well for logo applications</li>
+                    </ul>
+                </div>
+
+                <div class="card">
+                    <h3>Option B: Asymmetrical Dynamic</h3>
+                    <p><strong>Approach:</strong> Protea positioned off-center</p>
+                    <ul>
+                        <li>Creates visual tension and energy</li>
+                        <li>Modern, contemporary aesthetic</li>
+                        <li>Text integrated within petal rays</li>
+                        <li>More experimental and bold</li>
+                        <li>Ideal for packaging and posters</li>
+                    </ul>
+                </div>
+
+                <div class="card">
+                    <h3>Option C: Pattern Repeat System</h3>
+                    <p><strong>Approach:</strong> Multiple proteas at varying scales</p>
+                    <ul>
+                        <li>Seamless tile pattern (300mm × 300mm)</li>
+                        <li>Luxurious botanical wallpaper effect</li>
+                        <li>Works for textiles and wrapping paper</li>
+                        <li>Creates immersive environment</li>
+                
